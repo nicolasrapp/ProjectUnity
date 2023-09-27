@@ -11,6 +11,7 @@ public class SelectEnemyTurretFocus : Action
 	public SharedTransform target;
 	public SharedFloat minRadius;
 	public SharedFloat maxRadius;
+	public SharedFloat bullets;
 
 	public override void OnAwake()
 	{

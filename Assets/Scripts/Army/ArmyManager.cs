@@ -23,6 +23,9 @@ public abstract class ArmyManager : MonoBehaviour
 
     [SerializeField] UnityEvent m_OnArmyIsDead;
 
+    [SerializeField] int bullets = 0;
+
+
     #region Allies Retrieval
     public List<ArmyElement> GetAllAllies(bool sortRandom, ArmyElement allyBuyer)
     {
@@ -96,7 +99,10 @@ public abstract class ArmyManager : MonoBehaviour
      public GameObject GetFirstEnemyOfType<T>() where T: ArmyElement
     {
         var enemies = GetAllEnemiesOfType<T>(false);
-        return enemies.FirstOrDefault()?.gameObject;
+        int i = (int) bullets/12;
+        bullets +=1;
+        if(i > enemies.Count) i = 0;
+        return enemies[i]?.gameObject;
     }
 
     public GameObject GetRandomEnemyByDistance(Vector3 centerPos, float minRadius, float maxRadius)

@@ -93,6 +93,12 @@ public abstract class ArmyManager : MonoBehaviour
         return enemies.FirstOrDefault()?.gameObject;
     }
 
+     public GameObject GetFirstEnemyOfType<T>() where T: ArmyElement
+    {
+        var enemies = GetAllEnemiesOfType<T>(false);
+        return enemies.FirstOrDefault()?.gameObject;
+    }
+
     public GameObject GetRandomEnemyByDistance(Vector3 centerPos, float minRadius, float maxRadius)
     {
         var enemies = GetAllEnemiesByDistance(true,centerPos,minRadius,maxRadius);

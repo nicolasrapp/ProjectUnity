@@ -99,7 +99,7 @@ public abstract class ArmyManager : MonoBehaviour
      public GameObject GetFirstEnemyOfType<T>() where T: ArmyElement
     {
         var enemies = GetAllEnemiesOfType<T>(false);
-        int i = (int) bullets/12;
+        int i = (int) bullets/11;
         bullets +=1;
         if(i > enemies.Count) i = 0;
         return enemies[i]?.gameObject;

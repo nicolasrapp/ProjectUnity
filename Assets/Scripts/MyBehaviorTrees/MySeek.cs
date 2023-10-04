@@ -31,12 +31,14 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         // Return running if the agent hasn't reached the destination yet
         public override TaskStatus OnUpdate()
         {
+            //Debug.Log(target.Value);
             if (target.Value == null) return TaskStatus.Failure;
 
             if (HasArrived()) return TaskStatus.Success;
 
+            /*
             if((Time.frameCount % nObjects) ==index)
-                SetDestination(target.Value.position);
+                SetDestination(target.Value.position);*/
 
             return TaskStatus.Running;
         }

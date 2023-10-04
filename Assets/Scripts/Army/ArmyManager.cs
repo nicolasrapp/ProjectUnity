@@ -75,6 +75,14 @@ public abstract class ArmyManager : MonoBehaviour
         return enemies;
     }
 
+    public GameObject GetFirstEnemyOfTypeByDistance<T>(bool sortRandom, Vector3 centerPos, float minRadius, float maxRadius) where T : ArmyElement
+    {
+        var enemies = GetAllEnemiesOfType<T>(sortRandom).Where(
+            item => Vector3.Distance(centerPos, item.transform.position) > minRadius
+                    && Vector3.Distance(centerPos, item.transform.position) < maxRadius).ToList();
+        return enemies.FirstOrDefault()?.gameObject;
+    }
+
     public List<ArmyElement> GetAllEnemiesOfTypeByDistance<T>(bool sortRandom, Vector3 centerPos, float minRadius, float maxRadius) where T : ArmyElement
     {
         var enemies = GetAllEnemiesOfType<T>(sortRandom).Where(
@@ -82,6 +90,8 @@ public abstract class ArmyManager : MonoBehaviour
                     && Vector3.Distance(centerPos, item.transform.position) < maxRadius).ToList();
         return enemies;
     }
+
+    
 
     // Random Enemy
     public GameObject GetRandomEnemy()
@@ -99,10 +109,14 @@ public abstract class ArmyManager : MonoBehaviour
      public GameObject GetFirstEnemyOfType<T>() where T: ArmyElement
     {
         var enemies = GetAllEnemiesOfType<T>(false);
-        int i = (int) bullets/11;
+        int i = (int) bullets/10;
         bullets +=1;
-        if(i > enemies.Count) i = 0;
+        if (enemies.Count==0){
+            return null;
+        }
+        if(i >= enemies.Count) i = 0;
         return enemies[i]?.gameObject;
+        
     }
 
     public GameObject GetRandomEnemyByDistance(Vector3 centerPos, float minRadius, float maxRadius)
